@@ -8,8 +8,6 @@ public class GraphNode {
     static GraphNode lastnode = null;
     Graphedge lastinedge;
     Graphedge lastoutedge;
-    Graphedge lastin;
-    Graphedge lastout;
     final int key;
 
 
@@ -33,7 +31,23 @@ public class GraphNode {
         return this.key;
     }
 
-
-
+    public int getInDegree()
+    {   int count =0;
+        Graphedge edge=this.lastinedge;
+        while (edge!=null){
+            count++;
+            edge=edge.nextin;
+        }
+    return count;
+    }
+    public int getOutDegree()
+    {   int count =0;
+        Graphedge edge=this.lastoutedge;
+        while (edge!=null){
+            count++;
+            edge=edge.nextout;
+        }
+        return count;
+    }
 }
 

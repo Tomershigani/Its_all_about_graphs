@@ -16,11 +16,18 @@ public class Graphedge {
         if (from.lastoutedge!= null) {
             this.nextout = from.lastoutedge;
             from.lastoutedge.prevout = this;
-            from.lastoutedge = this;
-        } else {
-            this.next = null;
-            lastedge = this;
         }
+        else
+            this.nextout = null;
+
+        from.lastoutedge = this;
+        if (to.lastinedge!= null) {
+            this.nextin = from.lastinedge;
+            from.lastinedge.prevout = this;
+        }
+        else
+            this.nextin = null;
+        to.lastinedge = this;
 
     }
 
