@@ -1,13 +1,10 @@
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 public class GraphNode {
 
     GraphNode next;
     GraphNode prev;
     static GraphNode lastnode = null;
-    Graphedge lastinedge;
-    Graphedge lastoutedge;
+    GraphEdge lastinedge;
+    GraphEdge lastoutedge;
     final int key;
 
 
@@ -31,9 +28,17 @@ public class GraphNode {
         return this.key;
     }
 
+    public void setLastinedge(GraphEdge edge){
+        this.lastinedge=edge;
+    }
+
+    public void setLastoutedge(GraphEdge edge){
+        this.lastoutedge=edge;
+    }
+
     public int getInDegree()
     {   int count =0;
-        Graphedge edge=this.lastinedge;
+        GraphEdge edge=this.lastinedge;
         while (edge!=null){
             count++;
             edge=edge.nextin;
@@ -42,7 +47,7 @@ public class GraphNode {
     }
     public int getOutDegree()
     {   int count =0;
-        Graphedge edge=this.lastoutedge;
+        GraphEdge edge=this.lastoutedge;
         while (edge!=null){
             count++;
             edge=edge.nextout;

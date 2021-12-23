@@ -1,14 +1,14 @@
-public class Graphedge {
+public class GraphEdge {
 
     GraphNode from;
     GraphNode to;
-    Graphedge nextin;
-    Graphedge nextout;
-    Graphedge previn;
-    Graphedge prevout;
+    GraphEdge nextin;
+    GraphEdge nextout;
+    GraphEdge previn;
+    GraphEdge prevout;
 
 
-    Graphedge(GraphNode from,GraphNode to) {
+    GraphEdge(GraphNode from, GraphNode to) {
         this.previn = null;
         this.prevout=null;
         this.from = from;
