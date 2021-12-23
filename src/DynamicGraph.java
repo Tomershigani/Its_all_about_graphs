@@ -4,7 +4,6 @@ public class DynamicGraph {
     GraphNode root = null;
 
     public DynamicGraph() {
-
     }
 
     public GraphNode insertNode(int nodeKey) {
@@ -19,6 +18,6 @@ public class DynamicGraph {
             node.prev = null;
             node.next = null;
         }
-
     }
+
 }
