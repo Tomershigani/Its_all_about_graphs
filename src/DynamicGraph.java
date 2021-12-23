@@ -1,14 +1,14 @@
 
 
 public class DynamicGraph {
-    GraphNode root = null;
+    GraphNode first = null;
 
     public DynamicGraph() {
     }
 
     public GraphNode insertNode(int nodeKey) {
-        root = new GraphNode(nodeKey);
-        return root ;
+        first = new GraphNode(nodeKey);
+        return first ;
     }
 
     public void deleteNode(GraphNode node) {
