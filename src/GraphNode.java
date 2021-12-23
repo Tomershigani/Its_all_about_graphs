@@ -10,6 +10,9 @@ public class GraphNode {
     Graphedge lastoutedge;
     final int key;
 
+    GraphNode (){
+        this.key = -1;
+    }
 
     GraphNode(int key) {
         this.prev = null;
@@ -49,5 +52,28 @@ public class GraphNode {
         }
         return count;
     }
+}
+
+
+
+class TreeNode extends GraphNode{
+    GraphNode parent;
+    GraphNode leftChild;
+    GraphNode rightChild;
+
+    public TreeNode() {
+        super();
+        parent = null;
+        leftChild = null;
+        rightChild = null;
+    }
+
+    public TreeNode(int key){
+     super (key);
+     parent = this.lastinedge.from;
+     leftChild = this.lastoutedge.to;
+     rightChild = this.lastinedge.nextout.to;
+    }
+
 }
 
