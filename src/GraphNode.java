@@ -8,12 +8,18 @@ public class GraphNode {
     GraphEdge lastinedge;
     GraphEdge lastoutedge;
     final int key;
+    int color; // the color of node in the bfs tree, 0- white,1-gray,2-black
+    int distance;// the distance from root in bfs tree
+    GraphNode bfs_parent;// the parent in bfs tree
 
     GraphNode (){
         this.key = -1;
     }
 
     GraphNode(int key) {
+        this.color =0;
+        this.distance=-1;
+        this.bfs_parent=null;
         this.prev = null;
         this.key = key;
         if (lastnode != null) {
