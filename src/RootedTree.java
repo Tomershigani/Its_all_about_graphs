@@ -79,15 +79,81 @@ public void preorderPrint(DataOutputStream out)
         }
 }
 
-private void bfs_initialization(){
+private void bfs_initialization(GraphNode source){
+        GraphNode next_node=source.next;
+        GraphNode prev_node=source.prev;
+        while(next_node!=null)
+        {
+            next_node.color=0;
+            next_node.distance=-1;
+            next_node.bfs_parent=null;
+            next_node=next_node.next;
+        }
+           while(prev_node!=null)
+          {
+            prev_node.color=0;
+            prev_node.distance=-1;
+            prev_node.bfs_parent=null;
+            prev_node=next_node.next;
+          }
+           if (source!=null)
+           {
+               source.color=1;
+               source.distance=0;
+               source.bfs_parent=null;
+           }
+
 
 }
+
+
+
+private void dfs_initialization(GraphNode source){
+        GraphNode next_node=source.next;
+        GraphNode prev_node=source.prev;
+        while(next_node!=null)
+        {
+            next_node.color=0;
+            next_node.distance=-1;
+            next_node.bfs_parent=null;
+            next_node=next_node.next;
+        }
+        while(prev_node!=null)
+        {
+            prev_node.color=0;
+            prev_node.distance=-1;
+            prev_node.bfs_parent=null;
+            prev_node=next_node.next;
+        }
+        if (source!=null)
+        {
+            source.color=0;
+            source.distance=0;
+            source.bfs_parent=null;
+        }
+
+
+    }
 
 public RootedTree bfs(GraphNode source)
 {
+    bfs_initialization(source);
+    int outdeg;
+    TreeNode pointer = new TreeNode();
+    GraphNode node = pointer;
+    GraphEdge edge;
+    TreeNode root = new TreeNode(source.getKey());
+    while (true)// need to think what to do instad of Q, and how to solve haritage problem
+    {
+        outdeg = root.getOutDegree();
+        for (int i=0;i<outdeg;i++)
+        {
+           edge =  root.lastoutedge;
+           //pointer = edge.to;
 
+        }
 
-}
+    }
 
 
 }
