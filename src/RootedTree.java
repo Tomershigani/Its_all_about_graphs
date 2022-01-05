@@ -14,13 +14,33 @@ public class RootedTree {
 
 
 public void printByLayer(DataOutputStream out){
-    out.write(root.getKey());
-    TreeNode temp = root;
-    while (temp.rightsibiling!=null){
-        out.writeUTF("," +(char)(temp.getKey()+'0'));
-        temp = temp.rightsibiling;
+    TreeNode next_node = null;
+    if (root.leftChild!=null){
+        next_node = root.leftChild;
     }
-    if ()
+    while(root!=null){
+        if (root.leftChild == next_node) {
+            System.out.println(root.getKey());
+        }
+        else System.out.print("," +root.getKey());
+        TreeNode temp = root;
+        while (temp.rightsibiling!=null){
+            System.out.print("," + temp.getKey());
+            if (next_node == null){
+                next_node = temp.leftChild;
+            }
+            temp = temp.rightsibiling;
+        }
+        if (root.parent.rightsibiling!=null){
+            root = root.parent.rightsibiling.leftChild;
+            continue;
+        }
+        root = next_node;
+        if (root.leftChild !=null){
+            next_node = root.leftChild;
+        }
+        else next_node = null;
 
+    }
 }
 }
