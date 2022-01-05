@@ -77,9 +77,9 @@ class TreeNode extends GraphNode{
 
     public TreeNode(int key){
      super (key);
-     parent = this.lastinedge.from;
-     leftChild = this.lastoutedge.to;
-     rightsibiling = this.lastinedge.nextout.to;
+     parent = (TreeNode)(this.lastinedge.from);
+     leftChild = (TreeNode)(this.lastoutedge.to);
+     rightsibiling = (TreeNode)(this.lastinedge.nextout.to);
     }
 
 }
