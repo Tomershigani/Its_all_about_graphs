@@ -1,3 +1,5 @@
+import jdk.nashorn.api.tree.Tree;
+
 public class GraphNode {
 
     GraphNode next;
@@ -62,9 +64,9 @@ public class GraphNode {
 
 
 class TreeNode extends GraphNode{
-    GraphNode parent;
-    GraphNode leftChild;
-    GraphNode rightsibiling;
+    TreeNode parent;
+    TreeNode leftChild;
+    TreeNode rightsibiling;
 
     public TreeNode() {
         super();
