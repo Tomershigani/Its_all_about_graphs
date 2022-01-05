@@ -8,9 +8,6 @@ public class DynamicGraph {
     }
 
 
-
-
-
     public GraphEdge InsertEdge(GraphNode from, GraphNode to) {
         GraphEdge edge = new GraphEdge(from, to);
         from.setLastoutedge(edge);
