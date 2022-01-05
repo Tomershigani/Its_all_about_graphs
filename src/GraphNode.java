@@ -64,20 +64,20 @@ public class GraphNode {
 class TreeNode extends GraphNode{
     GraphNode parent;
     GraphNode leftChild;
-    GraphNode rightChild;
+    GraphNode rightsibiling;
 
     public TreeNode() {
         super();
         parent = null;
         leftChild = null;
-        rightChild = null;
+        rightsibiling = null;
     }
 
     public TreeNode(int key){
      super (key);
      parent = this.lastinedge.from;
      leftChild = this.lastoutedge.to;
-     rightChild = this.lastinedge.nextout.to;
+     rightsibiling = this.lastinedge.nextout.to;
     }
 
 }
