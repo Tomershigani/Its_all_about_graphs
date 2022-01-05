@@ -1,11 +1,15 @@
-<<<<<<< HEAD
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 public class DynamicGraph {
-    GraphNode head;
+    GraphNode first = null;
 
-
-    DynamicGraph() {
-        head = new GraphNode(-1);
+    public DynamicGraph() {
     }
+
+
+
+
 
     public GraphEdge InsertEdge(GraphNode from, GraphNode to) {
         GraphEdge edge = new GraphEdge(from, to);
@@ -47,15 +51,7 @@ public class DynamicGraph {
             edge.nextout.prevout = null;
         }
     }
-=======
-import java.io.DataOutputStream;
-import java.io.IOException;
 
-public class DynamicGraph {
-    GraphNode first = null;
-
-    public DynamicGraph() {
-    }
 
     public GraphNode insertNode(int nodeKey) {
         first = new GraphNode(nodeKey);
@@ -71,5 +67,5 @@ public class DynamicGraph {
         }
     }
 
->>>>>>> origin/master
+
 }
