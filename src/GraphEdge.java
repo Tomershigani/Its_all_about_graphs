@@ -9,8 +9,8 @@ public class GraphEdge {
 
 
     GraphEdge(GraphNode from, GraphNode to) {
-        this.previn = null;
-        this.prevout=null;
+     //   this.previn = null;
+       // this.prevout=null;
         this.from = from;
         this.to= to;
         if (from.lastoutedge!= null) {
@@ -22,8 +22,8 @@ public class GraphEdge {
 
         from.lastoutedge = this;
         if (to.lastinedge!= null) {
-            this.nextin = from.lastinedge;
-            from.lastinedge.prevout = this;
+            this.nextin = to.lastinedge;//it was from before
+            to.lastinedge.prevout = this;
         }
         else
             this.nextin = null;

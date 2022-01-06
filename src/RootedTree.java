@@ -30,14 +30,21 @@ public class RootedTree {
                 }
                 temp = temp.rightsibiling;
             }
-            if (root.parent.rightsibiling != null) {
-                root = root.parent.rightsibiling.leftChild;
-                continue;
+            if(root.parent!=null) {
+
+                if (root.parent.rightsibiling != null) {
+                    root = root.parent.rightsibiling.leftChild;
+                    continue;
+                }
             }
             root = next_node;
-            if (root.leftChild != null) {
-                next_node = root.leftChild;
-            } else next_node = null;
+            if(root!=null) {
+                if (root.leftChild != null) {
+                    next_node = root.leftChild;
+                }
+                else next_node = null;
+            }
+
 
         }
     }
