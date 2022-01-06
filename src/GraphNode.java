@@ -11,6 +11,8 @@ public class GraphNode {
     int color; // the color of node in the bfs tree, 0- white,1-gray,2-black
     int distance;// the distance from root in bfs tree
     GraphNode bfs_parent;// the parent in bfs tree
+    int d;
+    int f;
 
     GraphNode (){
         this.key = -1;

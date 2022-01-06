@@ -3,6 +3,8 @@ import java.io.IOException;
 
 public class DynamicGraph {
     GraphNode first = null;
+    GraphNode lastinPI = null;
+    static int time = 0;
 
     public DynamicGraph() {
     }
@@ -65,4 +67,106 @@ public class DynamicGraph {
     }
 
 
+    private void bfs_initialization(GraphNode source) {
+        GraphNode next_node = source.next;
+        GraphNode prev_node = source.prev;
+        while (next_node != null) {
+            next_node.color = 0;
+            next_node.distance = -1;
+            next_node.bfs_parent = null;
+            next_node = next_node.next;
+        }
+        while (prev_node != null) {
+            prev_node.color = 0;
+            prev_node.distance = -1;
+            prev_node.bfs_parent = null;
+            prev_node = next_node.next;
+        }
+        if (source != null) {
+            source.color = 1;
+            source.distance = 0;
+            source.bfs_parent = null;
+        }
+
+
+    }
+
+
+    private void dfs_initialization(GraphNode source) {
+        GraphNode next_node = source.next;
+        GraphNode prev_node = source.prev;
+        while (next_node != null) {
+            next_node.color = 0;
+            next_node.distance = -1;
+            next_node.bfs_parent = null;
+            next_node = next_node.next;
+        }
+        while (prev_node != null) {
+            prev_node.color = 0;
+            prev_node.distance = -1;
+            prev_node.bfs_parent = null;
+            prev_node = next_node.next;
+        }
+        if (source != null) {
+            source.color = 0;
+            source.distance = 0;
+            source.bfs_parent = null;
+        }
+
+
+    }
+
+    public RootedTree bfs(GraphNode source) {
+        bfs_initialization(source);
+        int outdeg;
+        TreeNode pointer = new TreeNode();
+        GraphNode node = pointer;
+        GraphEdge edge;
+        TreeNode root = new TreeNode(source.getKey());
+        while (true)// need to think what to do instad of Q, and how to solve haritage problem
+        {
+            outdeg = root.getOutDegree();
+            for (int i = 0; i < outdeg; i++) {
+                edge = root.lastoutedge;
+                //pointer = edge.to;
+
+            }
+
+        }
+
+
+    }
+
+
+    public RootedTree scc() {
+        TreeNode new_root = new TreeNode(0);
+        dfs_initialization(GraphNode.lastnode);
+        GraphNode vertex = GraphNode.lastnode;
+        GraphNode.time = 0;
+        while (vertex != null) {
+            if (vertex.color == 0) {
+                DFS_Visit(vertex);
+            }
+            vertex = vertex.next;
+        }
+
+    }
+
+    public void DFS_Visit(GraphNode u){
+        time = time +1;
+        u.d = time;
+        u.color = 1;
+        GraphNode Adj = u.lastoutedge.to;
+        while (Adj!=null){
+            if (Adj.color == 0){
+                Adj.bfs_parent = u;
+                DFS_Visit(Adj);
+            }
+        }
+        u.color =2;
+        time = time +1;
+        u.f = time;
+
+
+    }
 }
