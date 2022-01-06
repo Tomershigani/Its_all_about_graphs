@@ -92,29 +92,8 @@ public class DynamicGraph {
     }
 
 
-    private void dfs_initialization(GraphNode source) {
-        GraphNode next_node = source.next;
-        GraphNode prev_node = source.prev;
-        while (next_node != null) {
-            next_node.color = 0;
-            next_node.distance = -1;
-            next_node.bfs_parent = null;
-            next_node = next_node.next;
-        }
-        while (prev_node != null) {
-            prev_node.color = 0;
-            prev_node.distance = -1;
-            prev_node.bfs_parent = null;
-            prev_node = next_node.next;
-        }
-        if (source != null) {
-            source.color = 0;
-            source.distance = 0;
-            source.bfs_parent = null;
-        }
 
 
-    }
 
     public RootedTree bfs(GraphNode source) {
         bfs_initialization(source);
@@ -156,9 +135,14 @@ public class DynamicGraph {
     }
 
     public void dfs() {
-        dfs_initialization(GraphNode.lastnode);
         GraphNode vertex = GraphNode.lastnode;
+        while (vertex!=null){
+            vertex.color = 0;
+            vertex.bfs_parent = null;
+            vertex = vertex.next;
+        }
         time = 0;
+        vertex = GraphNode.lastnode;
         while (vertex != null) {
             if (vertex.color == 0) {
                 DFS_Visit_reg(vertex);
@@ -191,9 +175,14 @@ public class DynamicGraph {
         }
     }
     public void dfs_rev(){
-        dfs_initialization(lastinPI);
         GraphNode vertex = lastinPI;
+        while (vertex!=null){
+            vertex.color = 0;
+            vertex.bfs_parent = null;
+            vertex = vertex.nextinPI;
+        }
         time = 0;
+        vertex = lastinPI;
         while (vertex != null) {
             if (vertex.color == 0) {
                 DFS_Visit_rev(vertex);
