@@ -146,6 +146,7 @@ public class DynamicGraph {
         while (ver!=null){
             if (ver.bfs_parent == null){
                 if (new_root.leftChild !=null){
+                    new_root.leftChild.rightsibiling = (TreeNode)(ver);
                     new_root.rightsibiling
                 }
             }
