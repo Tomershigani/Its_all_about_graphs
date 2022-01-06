@@ -139,15 +139,13 @@ public class DynamicGraph {
 
 
     public RootedTree scc() {
-        TreeNode new_root = new TreeNode(0);
+        TreeNode new_root = new TreeNode(0 , null);
         dfs();
         dfs_rev();
         GraphNode ver = lastinPI;
         while (ver!=null){
-            if (ver.bfs_parent == null){
-                if (new_root.leftChild !=null){
-                    new_root.leftChild.rightsibiling = (TreeNode)(ver);
-                    new_root.rightsibiling
+
+                if (
                 }
             }
         }

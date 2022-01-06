@@ -81,16 +81,22 @@ class TreeNode extends GraphNode{
 
     public TreeNode() {
         super();
-        parent = null;
-        leftChild = null;
-        rightsibiling = null;
+        TreeNode parent = null;
+        TreeNode leftChild = null;
+        TreeNode rightsibiling = null;
     }
 
-    public TreeNode(int key){
-     super (key);
-     parent = (TreeNode)(this.lastinedge.from);
-     leftChild = (TreeNode)(this.lastoutedge.to);
-     rightsibiling = (TreeNode)(this.lastinedge.nextout.to);
+    public TreeNode(int key , TreeNode pi) {
+        super(key);
+        this.parent = pi;
+        if (parent.leftChild == null){
+            parent.leftChild = this;
+        }
+        TreeNode temp = parent.leftChild.rightsibiling;
+        while (temp!=null){
+            temp = temp.rightsibiling;
+        }
+        temp.rightsibiling = this;
     }
 
 }
