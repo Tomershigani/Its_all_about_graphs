@@ -11,7 +11,7 @@ public class DynamicGraph {
     }
 
 
-    public GraphEdge InsertEdge(GraphNode from, GraphNode to) {
+    public GraphEdge insertEdge(GraphNode from, GraphNode to) {
         GraphEdge edge = new GraphEdge(from, to);
         from.setLastoutedge(edge);
         to.setLastinedge(edge);
