@@ -1,8 +1,6 @@
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import static java.util.logging.Logger.global;
-
 public class RootedTree {
     TreeNode root;
 
@@ -49,7 +47,7 @@ public class RootedTree {
         TreeNode new_root = this.root;
         while (new_root != null) {
             if (from == 1) {
-                out.write(new_root.getKey());
+                System.out.print(new_root.getKey());
                 if (new_root.leftChild != null)
                     new_root = new_root.leftChild;
                 else {
@@ -70,10 +68,12 @@ public class RootedTree {
 
             }
             if (new_root != null)
-                out.writeChars(",");
+                 System.out.print(",");
         }
     }
 
+
+
+
+
 }
-
-

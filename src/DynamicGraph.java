@@ -4,6 +4,7 @@ import java.io.IOException;
 public class DynamicGraph {
     GraphNode first = null;
     GraphNode lastinPI = null;
+    GraphNode firstPI = null;
     static int time = 0;
 
     public DynamicGraph() {
@@ -65,11 +66,10 @@ public class DynamicGraph {
             node.next = null;
         }
     }
-
-
     private void bfs_initialization(GraphNode source) {
         GraphNode next_node = source.next;
         GraphNode prev_node = source.prev;
+        firstPI = source;
         while (next_node != null) {
             next_node.color = 0;
             next_node.distance = -1;
@@ -80,7 +80,7 @@ public class DynamicGraph {
             prev_node.color = 0;
             prev_node.distance = -1;
             prev_node.bfs_parent = null;
-            prev_node = next_node.next;
+            prev_node = prev_node.next;
         }
         if (source != null) {
             source.color = 1;
@@ -97,28 +97,43 @@ public class DynamicGraph {
 
     public RootedTree bfs(GraphNode source) {
         bfs_initialization(source);
-        int outdeg;
-        TreeNode pointer = new TreeNode();
-        GraphNode node = pointer;
+        GraphNode pointer = new TreeNode();
+        pointer = firstPI;
         GraphEdge edge;
-        TreeNode root = new TreeNode(source.getKey());
-        while (true)// need to think what to do instad of Q, and how to solve haritage problem
+        TreeNode root = new TreeNode(source.getKey(),null);
+        RootedTree bfs_tree = new RootedTree(root);
+        while (pointer!=null)// need to think what to do instad of Q, and how to solve haritage problem
         {
-            outdeg = root.getOutDegree();
-            for (int i = 0; i < outdeg; i++) {
-                edge = root.lastoutedge;
-                //pointer = edge.to;
 
+            edge = pointer.lastoutedge;
+            while (edge!=null){
+                if (edge.to.color==0)// if white
+                {
+                    edge.to.color=1;
+                    edge.to.distance = pointer.distance+1;
+                    TreeNode tnode = new TreeNode(pointer.key, (TreeNode)pointer);
+                    firstPI.nextinPI= edge.to;
+
+                }
+                firstPI = firstPI.nextinPI;
+                edge = edge.prevout;
             }
+            pointer = pointer.nextinPI;
 
         }
 
-
+        return bfs_tree;
     }
 
 
+
+
+
+
+
+
     public RootedTree scc() {
-        TreeNode new_root = new TreeNode(0, null)
+        TreeNode new_root = new TreeNode(0, null);
         RootedTree tree = new RootedTree(new_root);
         dfs();
         dfs_rev();
@@ -130,6 +145,7 @@ public class DynamicGraph {
             else {
                 new TreeNode(ver.getKey(), (TreeNode) ver.bfs_parent);
             }
+            ver= ver.nextinPI;
         }
         return tree;
     }
@@ -155,12 +171,15 @@ public class DynamicGraph {
         time = time +1;
         u.d = time;
         u.color = 1;
-        GraphNode Adj = u.lastoutedge.to;
-        while (Adj!=null){
+        GraphEdge edge= u.lastoutedge;
+        while (edge!=null){
+            GraphNode Adj =edge.to;
             if (Adj.color == 0){
                 Adj.bfs_parent = u;
                 DFS_Visit_reg(Adj);
             }
+            edge=edge.nextout;
+
         }
         u.color =2;
         time = time +1;
@@ -191,16 +210,21 @@ public class DynamicGraph {
         }
     }
 
+
+
     public void DFS_Visit_rev(GraphNode u1){
         time = time +1;
         u1.d = time;
         u1.color = 1;
-        GraphNode Adj = u1.lastinedge.from;
-        while (Adj!=null){
+
+        GraphEdge edge = u1.lastinedge;
+        while (edge!=null){
+            GraphNode Adj = edge.from;
             if (Adj.color == 0){
                 Adj.bfs_parent = u1;
                 DFS_Visit_reg(Adj);
             }
+            edge = edge.nextin;
         }
         u1.color =2;
         time = time +1;
