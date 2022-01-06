@@ -140,19 +140,33 @@ public class DynamicGraph {
 
     public RootedTree scc() {
         TreeNode new_root = new TreeNode(0);
-        dfs_initialization(GraphNode.lastnode);
-        GraphNode vertex = GraphNode.lastnode;
-        GraphNode.time = 0;
-        while (vertex != null) {
-            if (vertex.color == 0) {
-                DFS_Visit(vertex);
+        dfs();
+        dfs_rev();
+        GraphNode ver = lastinPI;
+        while (ver!=null){
+            if (ver.bfs_parent == null){
+                if (new_root.leftChild !=null){
+                    new_root.rightsibiling
+                }
             }
-            vertex = vertex.next;
         }
+
 
     }
 
-    public void DFS_Visit(GraphNode u){
+    public void dfs() {
+        dfs_initialization(GraphNode.lastnode);
+        GraphNode vertex = GraphNode.lastnode;
+        time = 0;
+        while (vertex != null) {
+            if (vertex.color == 0) {
+                DFS_Visit_reg(vertex);
+            }
+            vertex = vertex.next;
+        }
+    }
+
+    public void DFS_Visit_reg(GraphNode u){
         time = time +1;
         u.d = time;
         u.color = 1;
@@ -160,13 +174,46 @@ public class DynamicGraph {
         while (Adj!=null){
             if (Adj.color == 0){
                 Adj.bfs_parent = u;
-                DFS_Visit(Adj);
+                DFS_Visit_reg(Adj);
             }
         }
         u.color =2;
         time = time +1;
         u.f = time;
+        if(lastinPI !=null){
+            lastinPI.previnPI = u;
+            u.nextinPI = lastinPI;
+            lastinPI = u;
+        }
+        else {
+            lastinPI = u;
+        }
+    }
+    public void dfs_rev(){
+        dfs_initialization(lastinPI);
+        GraphNode vertex = lastinPI;
+        time = 0;
+        while (vertex != null) {
+            if (vertex.color == 0) {
+                DFS_Visit_rev(vertex);
+            }
+            vertex = vertex.nextinPI;
+        }
+    }
 
-
+    public void DFS_Visit_rev(GraphNode u1){
+        time = time +1;
+        u1.d = time;
+        u1.color = 1;
+        GraphNode Adj = u1.lastinedge.from;
+        while (Adj!=null){
+            if (Adj.color == 0){
+                Adj.bfs_parent = u1;
+                DFS_Visit_reg(Adj);
+            }
+        }
+        u1.color =2;
+        time = time +1;
+        u1.f = time;
     }
 }

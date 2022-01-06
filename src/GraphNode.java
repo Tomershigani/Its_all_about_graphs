@@ -13,6 +13,9 @@ public class GraphNode {
     GraphNode bfs_parent;// the parent in bfs tree
     int d;
     int f;
+    GraphNode nextinPI;
+    GraphNode previnPI;
+
 
     GraphNode (){
         this.key = -1;
