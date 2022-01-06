@@ -139,18 +139,20 @@ public class DynamicGraph {
 
 
     public RootedTree scc() {
-        TreeNode new_root = new TreeNode(0 , null);
+        TreeNode new_root = new TreeNode(0, null)
+        RootedTree tree = new RootedTree(new_root);
         dfs();
         dfs_rev();
         GraphNode ver = lastinPI;
-        while (ver!=null){
-
-                if (
-                }
+        while (ver!=null) {
+            if (ver.bfs_parent == null) {
+                new TreeNode(ver.getKey(), new_root);
+            }
+            else {
+                new TreeNode(ver.getKey(), (TreeNode) ver.bfs_parent);
             }
         }
-
-
+        return tree;
     }
 
     public void dfs() {
