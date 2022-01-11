@@ -112,7 +112,7 @@ public class DynamicGraph {
                 {
                     edge.to.color=1;
                     edge.to.distance = pointer.distance+1;
-                    TreeNode tnode = new TreeNode(pointer.key, (TreeNode)pointer);
+                    TreeNode tnode = new TreeNode(edge.to.key, (TreeNode)pointer);
                     firstPI.nextinPI= edge.to;
 
                 }
