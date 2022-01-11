@@ -98,10 +98,10 @@ public class DynamicGraph {
 
     public RootedTree bfs(GraphNode source) {
         bfs_initialization(source);
-        GraphNode pointer = new TreeNode();
+        GraphNode pointer = new GraphNode();
         pointer = firstPI;
         GraphEdge edge;
-        TreeNode root = new TreeNode(source.getKey(),null);
+        GraphNode root = new GraphNode(source.getKey(),null);
         RootedTree bfs_tree = new RootedTree(root);
         while (pointer!=null)// need to think what to do instad of Q, and how to solve haritage problem
         {
@@ -112,7 +112,7 @@ public class DynamicGraph {
                 {
                     edge.to.color=1;
                     edge.to.distance = pointer.distance+1;
-                    TreeNode tnode = new TreeNode(edge.to.key, (TreeNode)pointer);
+                    GraphNode tnode = new GraphNode(edge.to.key,pointer);
                     firstPI.nextinPI= edge.to;
 
                 }
@@ -134,17 +134,17 @@ public class DynamicGraph {
 
 
     public RootedTree scc() {
-        TreeNode new_root = new TreeNode(0, null);
+        GraphNode new_root = new GraphNode(0);
         RootedTree tree = new RootedTree(new_root);
         dfs();
         dfs_rev();
         GraphNode ver = lastinPI;
         while (ver!=null) {
             if (ver.bfs_parent == null) {
-                new TreeNode(ver.getKey(), new_root);
+                new GraphNode(ver.getKey(), new_root);
             }
             else {
-                new TreeNode(ver.getKey(), (TreeNode) ver.bfs_parent);
+                new GraphNode(ver.getKey(),  ver.bfs_parent);
             }
             ver= ver.nextinPI;
         }

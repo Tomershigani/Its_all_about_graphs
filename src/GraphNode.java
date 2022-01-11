@@ -15,6 +15,9 @@ public class GraphNode {
     int f;
     GraphNode nextinPI;
     GraphNode previnPI;
+    GraphNode parent;
+    GraphNode leftChild;
+    GraphNode rightsibiling;
 
 
     GraphNode (){
@@ -22,6 +25,9 @@ public class GraphNode {
     }
 
     GraphNode(int key) {
+        this.parent = null;
+        this.leftChild = null;
+        this.rightsibiling = null;
         this.color =0;
         this.distance=-1;
         this.bfs_parent=null;
@@ -38,6 +44,24 @@ public class GraphNode {
         this.lastinedge=null;
         this.lastoutedge=null;
     }
+    public GraphNode(int key , GraphNode pi) {
+        this(key);
+        if(pi!=null) { //// add if if pi == null noting
+            this.parent = pi;
+            if (parent.leftChild != null) {
+                GraphNode temp = parent.leftChild;
+                while (temp.rightsibiling != null) {
+                    temp = temp.rightsibiling;
+                }
+                temp.rightsibiling = this;
+            }
+            else {
+                parent.leftChild = this;
+            }
+        }
+    }
+
+
 
 
     public int getKey(){
@@ -70,9 +94,28 @@ public class GraphNode {
         }
         return count;
     }
-}
+    public void setparent(GraphNode pi)
+    {
+        if(pi!=null) { //// add if if pi == null noting
+            this.parent = pi;
+            if (parent.leftChild != null) {
+                GraphNode temp = parent.leftChild;
+                while (temp.rightsibiling != null) {
+                    temp = temp.rightsibiling;
+                }
+                temp.rightsibiling = this;
+            }
+            else {
+                parent.leftChild = this;
+            }
+        }
+    }
+
+    }
 
 
+
+/*
 
 class TreeNode extends GraphNode{
     TreeNode parent;
@@ -105,3 +148,4 @@ class TreeNode extends GraphNode{
 
 }
 
+*/
