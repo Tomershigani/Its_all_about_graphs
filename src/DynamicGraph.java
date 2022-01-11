@@ -1,6 +1,7 @@
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+
 public class DynamicGraph {
     GraphNode first = null;
     GraphNode lastinPI = null;
@@ -174,9 +175,11 @@ public class DynamicGraph {
         GraphEdge edge= u.lastoutedge;
         while (edge!=null){
             GraphNode Adj =edge.to;
-            if (Adj.color == 0){
-                Adj.bfs_parent = u;
-                DFS_Visit_reg(Adj);
+            if(Adj!=null) { //// cheking adj !=null
+                if (Adj.color == 0) {
+                    Adj.bfs_parent = u;
+                    DFS_Visit_reg(Adj);
+                }
             }
             edge=edge.nextout;
 
@@ -208,6 +211,7 @@ public class DynamicGraph {
             }
             vertex = vertex.nextinPI;
         }
+
     }
 
 
@@ -220,9 +224,11 @@ public class DynamicGraph {
         GraphEdge edge = u1.lastinedge;
         while (edge!=null){
             GraphNode Adj = edge.from;
-            if (Adj.color == 0){
-                Adj.bfs_parent = u1;
-                DFS_Visit_reg(Adj);
+            if(Adj!=null) {
+                if (Adj.color == 0) {
+                    Adj.bfs_parent = u1;
+                    DFS_Visit_rev(Adj);
+                }
             }
             edge = edge.nextin;
         }

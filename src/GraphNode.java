@@ -88,17 +88,20 @@ class TreeNode extends GraphNode{
 
     public TreeNode(int key , TreeNode pi) {
         super(key);
-        if (pi != null) {
+        if(pi!=null) { //// add if if pi == null noting
             this.parent = pi;
-            if (parent.leftChild == null) {
+            if (parent.leftChild != null) {
+                TreeNode temp = parent.leftChild;
+                while (temp.rightsibiling != null) {
+                    temp = temp.rightsibiling;
+                }
+                temp.rightsibiling = this;
+            }
+            else {
                 parent.leftChild = this;
             }
-            TreeNode temp = parent.leftChild.rightsibiling;
-            while (temp != null) {
-                temp = temp.rightsibiling;
-            }
-            temp.rightsibiling = this;
         }
     }
+
 }
 
