@@ -22,8 +22,8 @@ public class DynamicGraph {
     }
 
     public void deleteEdge(GraphEdge edge) {
-        edge.from = null;
-        edge.to = null;
+      //  edge.from = null;
+       // edge.to = null;
         GraphEdge G;
         if ((edge.nextin != null) && (edge.previn != null)) //checking it's not the first or last edge
         {
@@ -40,16 +40,38 @@ public class DynamicGraph {
             edge.prevout.nextout = G;
         }
         if (edge.nextin == null) { //if first in
-            edge.previn.nextin = null;
+            if(edge.previn!=null)
+                edge.previn.nextin = null;
+            else {
+                edge.from.lastoutedge = null;
+                edge.to.lastinedge = null;
+            }
         }
         if (edge.nextout == null) { // if first in
-            edge.prevout.nextout = null;
+            if(edge.prevout!=null)
+                edge.prevout.nextout = null;
+            else {
+                edge.from.lastoutedge = null;
+                edge.to.lastinedge=null;
+            }
         }
-        if (edge.previn == null) { //if last in
+        if (edge.previn == null)  //if last in
+            if(edge.nextin!=null)
             edge.nextin.previn = null;
-        }
-        if (edge.prevout == null) { // if last in
+            else
+            {
+                edge.from.lastoutedge = null;
+                edge.to.lastinedge=null;
+            }
+
+        if (edge.prevout == null) { // if last out
+            if(edge.nextout!=null)
             edge.nextout.prevout = null;
+            else   {
+                edge.from.lastoutedge = null;
+                edge.to.lastinedge=null;
+            }
+
         }
     }
 

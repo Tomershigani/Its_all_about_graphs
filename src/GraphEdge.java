@@ -9,8 +9,8 @@ public class GraphEdge {
 
 
     GraphEdge(GraphNode from, GraphNode to) {
-     //   this.previn = null;
-       // this.prevout=null;
+        this.previn = null;
+        this.prevout=null;
         this.from = from;
         this.to= to;
         if (from.lastoutedge!= null) {
