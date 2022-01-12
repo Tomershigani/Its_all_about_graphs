@@ -88,7 +88,7 @@ public class RootedTree {
         }
 **/
     }
-    public void preorderPrint(DataOutputStream out) {
+    public void preorderPrint(DataOutputStream out){
         int from = 1; // 1 if comes from parent or sibiling,0 for child
         GraphNode new_root = this.root;
         while (new_root != null) {

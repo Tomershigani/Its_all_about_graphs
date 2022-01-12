@@ -6,7 +6,7 @@ import static java.lang.System.out;
 interface Constants
 {
     int SEED = 3659412;
-    int TEST_SIZE = 100;
+    int TEST_SIZE = 100; //10326
     int UNIQUE_KEYS_NUM = TEST_SIZE;
     int MAXIMUM_INSERT_NODES = UNIQUE_KEYS_NUM;
     int MAXIMUM_INSERT_EDGES = TEST_SIZE;
@@ -158,10 +158,27 @@ public class Test
 {
     public static void main(String[] args) throws IOException
     {
+
         Random random = new Random();
         // fix the seed to reproduce the run
         random.setSeed(Constants.SEED);
         testDynamicGraph(random);
+
+         /*
+        GraphNode node1=new GraphNode(1);
+        GraphNode node2=new GraphNode(2);
+        GraphNode node3=new GraphNode(3);
+        DynamicGraph g=new DynamicGraph();
+        GraphNode mo=g.insertNode(node1.key);
+        GraphNode m=g.insertNode(node2.key);
+        GraphNode m1=g.insertNode(node3.key);
+        GraphEdge E1=g.insertEdge(node1,node2);
+        GraphEdge E2=g.insertEdge(node1,node3);
+        RootedTree T = g.bfs(node1);
+        T.preorderPrint();
+
+
+          */
     }
     public static int[] createUniqueKeys(Random random)
     {
@@ -280,7 +297,8 @@ public class Test
                     break;
                 }
                 case BFS:
-                {/*
+                {
+
                     randomIndex = random.nextInt(CG.getCurrentNodesIndex());
                     T = G.bfs(CG.getNodeByIndex(randomIndex));
                     outStream.writeBytes("Print in layers after BFS:" + System.lineSeparator());
@@ -289,7 +307,9 @@ public class Test
                     outStream.writeBytes("Preorder print after BFS:" + System.lineSeparator());
                     T.preorderPrint(outStream);
                     outStream.writeBytes(System.lineSeparator());
-                    break;*/
+                    break;
+
+
                 }
                 case DEGREE:
                 {
@@ -307,6 +327,8 @@ public class Test
                                 " is " + node.getInDegree() + System.lineSeparator());
                     }
                     break;
+
+
                 }
                 case SCC:
                 {
@@ -316,9 +338,17 @@ public class Test
                     T.printByLayer(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     outStream.writeBytes("Preorder print after SCC:" + System.lineSeparator());
-                    T.preorderPrint(outStream);
+                    //T.preorderPrint(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     break;
+
+
+
+
+
+
+
+
 
 
                 }

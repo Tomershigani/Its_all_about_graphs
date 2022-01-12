@@ -13,6 +13,7 @@ public class GraphEdge {
         this.prevout=null;
         this.from = from;
         this.to= to;
+
         if (from.lastoutedge!= null) {
             this.nextout = from.lastoutedge;
             from.lastoutedge.prevout = this;

@@ -22,9 +22,15 @@ public class DynamicGraph {
     }
 
     public void deleteEdge(GraphEdge edge) {
-      //  edge.from = null;
-       // edge.to = null;
+       //edge.from = null;
+       //edge.to = null;
         GraphEdge G;
+        if(edge.from.lastoutedge==edge)
+            edge.from.lastoutedge=edge.prevout;
+        if(edge.to.lastinedge==edge)
+            edge.to.lastinedge=edge.previn;
+
+
         if ((edge.nextin != null) && (edge.previn != null)) //checking it's not the first or last edge
         {
             G = edge.previn;
@@ -42,35 +48,46 @@ public class DynamicGraph {
         if (edge.nextin == null) { //if first in
             if(edge.previn!=null)
                 edge.previn.nextin = null;
-            else {
+           /* else {
                 edge.from.lastoutedge = null;
                 edge.to.lastinedge = null;
             }
+
+            */
         }
-        if (edge.nextout == null) { // if first in
+        if (edge.nextout == null) { // if first out
             if(edge.prevout!=null)
                 edge.prevout.nextout = null;
+            /*
             else {
                 edge.from.lastoutedge = null;
                 edge.to.lastinedge=null;
             }
+
+             */
         }
         if (edge.previn == null)  //if last in
             if(edge.nextin!=null)
             edge.nextin.previn = null;
+            /*
             else
             {
                 edge.from.lastoutedge = null;
                 edge.to.lastinedge=null;
             }
 
+             */
+
         if (edge.prevout == null) { // if last out
             if(edge.nextout!=null)
             edge.nextout.prevout = null;
+            /*
             else   {
                 edge.from.lastoutedge = null;
                 edge.to.lastinedge=null;
             }
+
+             */
 
         }
     }
@@ -89,7 +106,21 @@ public class DynamicGraph {
             node.next = null;
         }
     }
+
+    private void PI_Reset(GraphNode source){
+        GraphNode next_node = source.nextinPI;
+        GraphNode prev_node = source.previnPI;
+        while (next_node!=null)
+        {
+            source.nextinPI=null;
+            next_node=next_node.nextinPI;
+        }
+
+    }
+
+
     private void bfs_initialization(GraphNode source) {
+
         GraphNode next_node = source.next;
         GraphNode prev_node = source.prev;
         firstPI = source;
@@ -97,35 +128,63 @@ public class DynamicGraph {
             next_node.color = 0;
             next_node.distance = -1;
             next_node.bfs_parent = null;
+            next_node.parent =null;
+            next_node.leftChild = null;
+            next_node.rightsibiling=null;
+            next_node.nextinPI=null;
+            next_node.previnPI=null;
             next_node = next_node.next;
         }
         while (prev_node != null) {
             prev_node.color = 0;
             prev_node.distance = -1;
             prev_node.bfs_parent = null;
-            prev_node = prev_node.next;
+            prev_node.leftChild = null;
+            prev_node.rightsibiling=null;
+            prev_node.parent = null;
+            prev_node.previnPI=null;
+            prev_node.nextinPI = null;
+            prev_node = prev_node.prev;
+
         }
         if (source != null) {
             source.color = 1;
             source.distance = 0;
             source.bfs_parent = null;
+            source.leftChild = null;
+            source.rightsibiling=null;
+            source.parent=null;
+            source.previnPI=null;
+            source.nextinPI = null;
         }
+
+
 
 
     }
 
+public void printnodekey(GraphNode node)
+{
+     GraphEdge edeg= node.lastoutedge;
+     while (edeg!=null){
+         System.out.print(edeg.to.getKey());
+         edeg = edeg.prevout;
+     }
 
+}
 
 
 
     public RootedTree bfs(GraphNode source) {
+
         bfs_initialization(source);
+        //printnodekey(source);
        // GraphNode pointer = new GraphNode();
         GraphNode pointer = firstPI;
         GraphEdge edge;
         GraphNode root = new GraphNode(source.getKey(),null);
         //GraphNode root = source; // check this
-        RootedTree bfs_tree = new RootedTree(root);
+        RootedTree bfs_tree = new RootedTree(source);
         while (pointer!=null)// need to think what to do instad of Q, and how to solve haritage problem
         {
 
@@ -141,7 +200,7 @@ public class DynamicGraph {
                     firstPI = firstPI.nextinPI;
                 }
                // firstPI = firstPI.nextinPI;
-                edge = edge.prevout;
+                edge = edge.nextout;
             }
             pointer = pointer.nextinPI;
 
@@ -165,7 +224,8 @@ public class DynamicGraph {
         GraphNode ver = lastinPI;
         while (ver!=null){
             if (ver.bfs_parent == null) {
-                  new GraphNode(ver.getKey(), new_root);
+                  //new GraphNode(ver.getKey(), new_root);
+                ver.setparent(new_root);
             }
             else {
                  new GraphNode(ver.getKey(), ver.bfs_parent);
