@@ -3,7 +3,7 @@ import java.io.IOException;
 
 public class RootedTree {
     GraphNode root;
-    private GraphNode new_root;
+
 
     public RootedTree() {
         root = new GraphNode();
@@ -11,23 +11,58 @@ public class RootedTree {
 
     public RootedTree(GraphNode node) {
         this.root = node;
-        if(root.key==4050)
-            System.out.print("zibi");
     }
-
-
-    public void printByLayer(DataOutputStream out) {
+   public int hight(GraphNode r){
+        int max_h;
+        if (r == null){
+            return -1;
+        }
+        else
+        {
+            max_h = 0;
+            GraphNode temp = r.leftChild;
+            while (temp != null){
+                int cur_h = hight(temp) +1;
+                if (max_h < cur_h){
+                    max_h = cur_h;
+                }
+                temp = temp.rightsibiling;
+        }
+        }
+        return max_h;
+   }
+   public void printrec(GraphNode n,int count,String[]print){
+        if (n ==null){
+            return;
+        }
+        print[count] = print[count]+ "," + n.getKey();
+        printrec(n.leftChild , count++ , print);
+        printrec(n.rightsibiling , count, print);
+   }
+   public void printByLayer(DataOutputStream out) {
         GraphNode next_node = null;
         GraphNode new_root= this.root;
+        int hight1 = hight(new_root);
+        String [] print = new String[hight1+1];
+        int count = 0;
+        printrec(new_root , count, print);
+        for (int i=0; i<print.length; i++){
+            System.out.println(print[i]);
+        }
+
+/**
         if (new_root.leftChild != null) {
             next_node = new_root.leftChild;
         }
         while (new_root != null) {
             if (new_root.leftChild == next_node) {
                 System.out.println(new_root.getKey());
-            } else System.out.print("," + new_root.getKey());
-            GraphNode temp = new_root;
-            while (temp.rightsibiling != null) {
+            }
+            else {
+                System.out.print("," + new_root.getKey());
+            }
+            GraphNode temp = new_root.rightsibiling;
+            while (temp != null) {
                 System.out.print("," + temp.getKey());
                 if (next_node == null) {
                     next_node = temp.leftChild;
@@ -35,7 +70,6 @@ public class RootedTree {
                 temp = temp.rightsibiling;
             }
             if(new_root.parent!=null) {
-
                 if (new_root.parent.rightsibiling != null) {
                     new_root = new_root.parent.rightsibiling.leftChild;
                     continue;
@@ -44,15 +78,17 @@ public class RootedTree {
             new_root = next_node;
             if(new_root!=null) {
                 if (new_root.leftChild != null) {
-                    next_node = root.leftChild;
+                    next_node = new_root.leftChild;
                 }
-                else next_node = null;
+                else {
+                    next_node = null;
+                }
             }
 
 
         }
+**/
     }
-
     public void preorderPrint(DataOutputStream out) {
         int from = 1; // 1 if comes from parent or sibiling,0 for child
         GraphNode new_root = this.root;

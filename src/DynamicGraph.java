@@ -165,10 +165,10 @@ public class DynamicGraph {
         GraphNode ver = lastinPI;
         while (ver!=null) {
             if (ver.bfs_parent == null) {
-                new GraphNode(ver.getKey(), new_root);
+                  new GraphNode(ver.getKey(), new_root);
             }
             else {
-                new GraphNode(ver.getKey(),  ver.bfs_parent);
+                 new GraphNode(ver.getKey(),  ver.bfs_parent);
             }
             ver= ver.nextinPI;
         }
