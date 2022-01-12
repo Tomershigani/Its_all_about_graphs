@@ -13,35 +13,36 @@ public class RootedTree {
         this.root = node;
     }
    public int hight(GraphNode r){
-        int max_h;
+        int max_h = 0;
         if (r == null){
             return -1;
         }
-        else
-        {
-            max_h = 0;
-            GraphNode temp = r.leftChild;
-            while (temp != null){
-                int cur_h = hight(temp) +1;
+        GraphNode temp = r.leftChild;
+        while (temp != null){
+                int cur_h = hight(temp);
                 if (max_h < cur_h){
                     max_h = cur_h;
                 }
                 temp = temp.rightsibiling;
-        }
-        }
-        return max_h;
+               }
+        return max_h+1;
    }
    public void printrec(GraphNode n,int count,String[]print){
         if (n==null){
             return;
         }
-        print[count] = print[count]+ "," + n.getKey();
-        printrec(n.leftChild , count++ , print);
+        if(print[count] == null){
+            print[count] = n.getKey()+ ",";
+        }
+        else {
+            print[count] +=  n.getKey()+"," ;
+        }
+        printrec(n.leftChild , count+1 , print);
         printrec(n.rightsibiling , count, print);
    }
    public void printByLayer(DataOutputStream out) {
         int hight1 = hight(this.root);
-        String [] print = new String[hight1+3];
+        String [] print = new String[hight1];
         int count = 0;
         printrec(this.root, count, print);
         for (int i=0; i<print.length; i++){

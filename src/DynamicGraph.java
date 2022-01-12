@@ -163,12 +163,12 @@ public class DynamicGraph {
         dfs();
         dfs_rev();
         GraphNode ver = lastinPI;
-        while ((ver!=null)&&(ver.color==2)){
+        while (ver!=null){
             if (ver.bfs_parent == null) {
-                  ver.setparent(new_root);
+                  new GraphNode(ver.getKey(), new_root);
             }
             else {
-                 ver.setparent(ver.bfs_parent);
+                 new GraphNode(ver.getKey(), ver.bfs_parent);
             }
             ver.color = 0;
             ver= ver.nextinPI;
@@ -221,6 +221,7 @@ public class DynamicGraph {
             lastinPI = u;
         }
     }
+
     public void dfs_rev(){
         GraphNode vertex = lastinPI;
         while (vertex!=null){
