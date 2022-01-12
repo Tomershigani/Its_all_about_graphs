@@ -33,8 +33,6 @@ public class GraphNode {
         this.bfs_parent=null;
         this.prev = null;
         this.key = key;
-        if(this.key==1392)
-            System.out.print("zibi");
         if (lastnode != null) {
             this.next = lastnode;
             lastnode.prev = this;

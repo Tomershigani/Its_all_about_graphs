@@ -32,7 +32,7 @@ public class RootedTree {
         return max_h;
    }
    public void printrec(GraphNode n,int count,String[]print){
-        if (n ==null){
+        if (n==null){
             return;
         }
         print[count] = print[count]+ "," + n.getKey();
@@ -40,12 +40,10 @@ public class RootedTree {
         printrec(n.rightsibiling , count, print);
    }
    public void printByLayer(DataOutputStream out) {
-        GraphNode next_node = null;
-        GraphNode new_root= this.root;
-        int hight1 = hight(new_root);
-        String [] print = new String[hight1+1];
+        int hight1 = hight(this.root);
+        String [] print = new String[hight1+3];
         int count = 0;
-        printrec(new_root , count, print);
+        printrec(this.root, count, print);
         for (int i=0; i<print.length; i++){
             System.out.println(print[i]);
         }

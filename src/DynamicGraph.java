@@ -163,13 +163,14 @@ public class DynamicGraph {
         dfs();
         dfs_rev();
         GraphNode ver = lastinPI;
-        while (ver!=null) {
+        while ((ver!=null)&&(ver.color==2)){
             if (ver.bfs_parent == null) {
-                  new GraphNode(ver.getKey(), new_root);
+                  ver.setparent(new_root);
             }
             else {
-                 new GraphNode(ver.getKey(),  ver.bfs_parent);
+                 ver.setparent(ver.bfs_parent);
             }
+            ver.color = 0;
             ver= ver.nextinPI;
         }
         return tree;
