@@ -11,6 +11,8 @@ public class RootedTree {
 
     public RootedTree(GraphNode node) {
         this.root = node;
+        if(root.key==4050)
+            System.out.print("zibi");
     }
 
 

@@ -310,6 +310,7 @@ public class Test
                 }
                 case SCC:
                 {
+                    /*
                     T = G.scc();
                     outStream.writeBytes("Print in layers after SCC:" + System.lineSeparator());
                     T.printByLayer(outStream);
@@ -318,6 +319,8 @@ public class Test
                     T.preorderPrint(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     break;
+
+                     */
                 }
             }
         }
