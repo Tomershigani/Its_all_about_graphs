@@ -12,6 +12,7 @@ public class RootedTree {
     public RootedTree(GraphNode node) {
         this.root = node;
     }
+
    public int hight(GraphNode r){
         int max_h = 0;
         if (r == null){
@@ -46,7 +47,7 @@ public class RootedTree {
         int count = 0;
         printrec(this.root, count, print);
         for (int i=0; i<print.length; i++){
-            System.out.println(print[i]);
+            System.out.println(print[i].substring(0, print[i].length() - 1));
         }
 
 /**

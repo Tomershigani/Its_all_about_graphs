@@ -164,22 +164,24 @@ public class Test
         random.setSeed(Constants.SEED);
         testDynamicGraph(random);
 
-         /*
-        GraphNode node1=new GraphNode(1);
+
+        /**GraphNode node1=new GraphNode(1);
         GraphNode node2=new GraphNode(2);
-        GraphNode node3=new GraphNode(3);
-        DynamicGraph g=new DynamicGraph();
-        GraphNode mo=g.insertNode(node1.key);
-        GraphNode m=g.insertNode(node2.key);
-        GraphNode m1=g.insertNode(node3.key);
-        GraphEdge E1=g.insertEdge(node1,node2);
-        GraphEdge E2=g.insertEdge(node1,node3);
-        RootedTree T = g.bfs(node1);
-        T.preorderPrint();
+        GraphNode node3=new GraphNode(3);**/
+        /**DynamicGraph g=new DynamicGraph();
+        GraphNode mo=g.insertNode(1);
+        GraphNode m=g.insertNode(2);
+        GraphNode m1=g.insertNode(3);
+        GraphEdge E1=g.insertEdge(mo,m);
+        GraphEdge E2=g.insertEdge(mo,m1);
+        RootedTree T = g.scc();
+        DataOutputStream outStream = new DataOutputStream(out);
+        T.printByLayer(outStream);
+        */
 
 
-          */
     }
+
     public static int[] createUniqueKeys(Random random)
     {
         int[] uniqueKeysArray = new int[Constants.UNIQUE_KEYS_NUM];
@@ -356,4 +358,5 @@ public class Test
         }
         outStream.close();
     }
+
 }

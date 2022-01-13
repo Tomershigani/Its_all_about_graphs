@@ -217,27 +217,29 @@ public void printnodekey(GraphNode node)
 
 
     public RootedTree scc() {
-        GraphNode new_root = new GraphNode(0);
-        RootedTree tree = new RootedTree(new_root);
         dfs();
         dfs_rev();
         GraphNode ver = lastinPI;
+        GraphNode new_root = new GraphNode(0);
+        RootedTree tree = new RootedTree(new_root);
         while (ver!=null){
             if (ver.bfs_parent == null) {
                   //new GraphNode(ver.getKey(), new_root);
                 ver.setparent(new_root);
             }
             else {
-                 new GraphNode(ver.getKey(), ver.bfs_parent);
+                 ver.setparent(ver.bfs_parent);
             }
             ver.color = 0;
             ver= ver.nextinPI;
         }
+        lastinPI = null;
         return tree;
     }
 
     public void dfs() {
         GraphNode vertex = GraphNode.lastnode;
+        bfs_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;
