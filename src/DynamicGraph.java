@@ -9,6 +9,8 @@ public class DynamicGraph {
     static int time = 0;
 
     public DynamicGraph() {
+        GraphNode.lastnode = null;
+        lastinPI = null;
     }
 
 
@@ -211,24 +213,61 @@ public void printnodekey(GraphNode node)
 
 
 
+    private void dfs_rev_initialization(GraphNode source) {
 
+        GraphNode next_node = source.nextinPI;
+        GraphNode prev_node = source.previnPI;
+        lastinPI = source;
+        while (next_node != null) {
+            next_node.color = 0;
+            next_node.distance = -1;
+            next_node.bfs_parent = null;
+            next_node.parent =null;
+            next_node.leftChild = null;
+            next_node.rightsibiling=null;
+            next_node = next_node.nextinPI;
+        }
+        while (prev_node != null) {
+            prev_node.color = 0;
+            prev_node.distance = -1;
+            prev_node.bfs_parent = null;
+            prev_node.leftChild = null;
+            prev_node.rightsibiling=null;
+            prev_node.parent = null;
+            prev_node = prev_node.previnPI;
+
+        }
+        if (source != null) {
+            source.color = 1;
+            source.distance = 0;
+            source.bfs_parent = null;
+            source.leftChild = null;
+            source.rightsibiling=null;
+            source.parent=null;
+        }
+
+
+
+
+    }
 
 
 
 
     public RootedTree scc() {
+        lastinPI = null;
         dfs();
         dfs_rev();
         GraphNode ver = lastinPI;
         GraphNode new_root = new GraphNode(0);
         RootedTree tree = new RootedTree(new_root);
-        while (ver!=null){
+        while ((ver!=null)&&(ver.color==2)){
             if (ver.bfs_parent == null) {
                   //new GraphNode(ver.getKey(), new_root);
                 ver.setparent(new_root);
             }
             else {
-                 ver.setparent(ver.bfs_parent);
+                ver.setparent(ver.bfs_parent);
             }
             ver.color = 0;
             ver= ver.nextinPI;
@@ -286,6 +325,7 @@ public void printnodekey(GraphNode node)
 
     public void dfs_rev(){
         GraphNode vertex = lastinPI;
+        dfs_rev_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;

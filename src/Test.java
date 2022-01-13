@@ -161,27 +161,41 @@ public class Test
 
         Random random = new Random();
         // fix the seed to reproduce the run
-        random.setSeed(Constants.SEED);
-        testDynamicGraph(random);
+       // random.setSeed(Constants.SEED);
+      //  testDynamicGraph(random);
 
 
         /**GraphNode node1=new GraphNode(1);
         GraphNode node2=new GraphNode(2);
         GraphNode node3=new GraphNode(3);**/
-        /**DynamicGraph g=new DynamicGraph();
+        DynamicGraph g=new DynamicGraph();
         GraphNode mo=g.insertNode(1);
         GraphNode m=g.insertNode(2);
         GraphNode m1=g.insertNode(3);
         GraphEdge E1=g.insertEdge(mo,m);
         GraphEdge E2=g.insertEdge(mo,m1);
+      //  RootedTree T1 = g.bfs(mo);
         RootedTree T = g.scc();
         DataOutputStream outStream = new DataOutputStream(out);
         T.printByLayer(outStream);
-        */
+       // T.preorderPrint(outStream);
+        DynamicGraph f=new DynamicGraph();
+        GraphNode ro=f.insertNode(1);
+        GraphNode r=f.insertNode(2);
+        GraphNode r1=f.insertNode(3);
+        GraphEdge E11=f.insertEdge(ro,r);
+        GraphEdge E21=f.insertEdge(ro,r1);
+        GraphEdge E33 = f.insertEdge(r1, ro);
+      //  RootedTree G1 = f.bfs(ro);
+        RootedTree G = f.scc();
+        G.printByLayer(outStream);
+      //  G.preorderPrint(outStream);
+
+
 
 
     }
-
+/**
     public static int[] createUniqueKeys(Random random)
     {
         int[] uniqueKeysArray = new int[Constants.UNIQUE_KEYS_NUM];
@@ -301,6 +315,7 @@ public class Test
                 case BFS:
                 {
 
+
                     randomIndex = random.nextInt(CG.getCurrentNodesIndex());
                     T = G.bfs(CG.getNodeByIndex(randomIndex));
                     outStream.writeBytes("Print in layers after BFS:" + System.lineSeparator());
@@ -358,5 +373,5 @@ public class Test
         }
         outStream.close();
     }
-
+*/
 }
