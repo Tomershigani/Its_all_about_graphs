@@ -90,11 +90,15 @@ public class RootedTree {
 **/
     }
     public void preorderPrint(DataOutputStream out){
-        int from = 1; // 1 if comes from parent or sibiling,0 for child
+        int from = 1;// 1 if comes from parent or sibiling,0 for child
+        int count =0;
         GraphNode new_root = this.root;
         while (new_root != null) {
             if (from == 1) {
+                if (count!=0)
+                  System.out.print(",");
                 System.out.print(new_root.getKey());
+                count++;
                 if (new_root.leftChild != null)
                     new_root = new_root.leftChild;
                 else {
@@ -114,8 +118,6 @@ public class RootedTree {
                     new_root = new_root.parent;
 
             }
-            if (new_root != null)
-                 System.out.print(",");
         }
     }
 

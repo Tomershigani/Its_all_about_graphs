@@ -6,7 +6,7 @@ import static java.lang.System.out;
 interface Constants
 {
     int SEED = 3659412;
-    int TEST_SIZE = 100; //10326
+    int TEST_SIZE = 400;
     int UNIQUE_KEYS_NUM = TEST_SIZE;
     int MAXIMUM_INSERT_NODES = UNIQUE_KEYS_NUM;
     int MAXIMUM_INSERT_EDGES = TEST_SIZE;
@@ -14,6 +14,7 @@ interface Constants
     int INITIAL_NUMBER_OF_NODES = TEST_SIZE / 10;
     int INITIAL_NUMBER_OF_EDGES = TEST_SIZE / 4;
     enum Operations {INSERT_NODE, DELETE_NODE, INSERT_EDGE, DELETE_EDGE, DEGREE, BFS, SCC}
+    int zibi = 0;
 }
 
 class CurrentGraph
@@ -158,44 +159,11 @@ public class Test
 {
     public static void main(String[] args) throws IOException
     {
-
         Random random = new Random();
         // fix the seed to reproduce the run
-       // random.setSeed(Constants.SEED);
-      //  testDynamicGraph(random);
-
-
-        /**GraphNode node1=new GraphNode(1);
-        GraphNode node2=new GraphNode(2);
-        GraphNode node3=new GraphNode(3);**/
-        DynamicGraph g=new DynamicGraph();
-        GraphNode mo=g.insertNode(1);
-        GraphNode m=g.insertNode(2);
-        GraphNode m1=g.insertNode(3);
-        GraphEdge E1=g.insertEdge(mo,m);
-        GraphEdge E2=g.insertEdge(mo,m1);
-      //  RootedTree T1 = g.bfs(mo);
-        RootedTree T = g.scc();
-        DataOutputStream outStream = new DataOutputStream(out);
-        T.printByLayer(outStream);
-       // T.preorderPrint(outStream);
-        DynamicGraph f=new DynamicGraph();
-        GraphNode ro=f.insertNode(1);
-        GraphNode r=f.insertNode(2);
-        GraphNode r1=f.insertNode(3);
-        GraphEdge E11=f.insertEdge(ro,r);
-        GraphEdge E21=f.insertEdge(ro,r1);
-        GraphEdge E33 = f.insertEdge(r1, ro);
-      //  RootedTree G1 = f.bfs(ro);
-        RootedTree G = f.scc();
-        G.printByLayer(outStream);
-      //  G.preorderPrint(outStream);
-
-
-
-
+        random.setSeed(Constants.SEED);
+        testDynamicGraph(random);
     }
-/**
     public static int[] createUniqueKeys(Random random)
     {
         int[] uniqueKeysArray = new int[Constants.UNIQUE_KEYS_NUM];
@@ -239,6 +207,7 @@ public class Test
         MyEdge myEdge;
         int randomIndex;
         int randomIndex1;
+        int zibi=0;
 
         RootedTree T;
         Constants.Operations[] operationsArray = new Constants.Operations[Constants.TEST_SIZE];
@@ -292,6 +261,13 @@ public class Test
                         {
                             node = CG.getNodeByIndex(randomIndex);
                             node1 = CG.getNodeByIndex(randomIndex1);
+                            /*
+                            if(node1.key==9504)
+                                zibi++;
+                            if(zibi==2)
+                                System.out.println("here");
+
+                             */
                             if (CG.canInsertEdge(node.getKey(), node1.getKey()))
                             {
                                 edge = G.insertEdge(node, node1);
@@ -314,8 +290,6 @@ public class Test
                 }
                 case BFS:
                 {
-
-
                     randomIndex = random.nextInt(CG.getCurrentNodesIndex());
                     T = G.bfs(CG.getNodeByIndex(randomIndex));
                     outStream.writeBytes("Print in layers after BFS:" + System.lineSeparator());
@@ -325,8 +299,6 @@ public class Test
                     T.preorderPrint(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     break;
-
-
                 }
                 case DEGREE:
                 {
@@ -344,34 +316,23 @@ public class Test
                                 " is " + node.getInDegree() + System.lineSeparator());
                     }
                     break;
-
-
                 }
                 case SCC:
                 {
-
+                    /*
                     T = G.scc();
                     outStream.writeBytes("Print in layers after SCC:" + System.lineSeparator());
                     T.printByLayer(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     outStream.writeBytes("Preorder print after SCC:" + System.lineSeparator());
-                    //T.preorderPrint(outStream);
+                    T.preorderPrint(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     break;
 
-
-
-
-
-
-
-
-
-
+                     */
                 }
             }
         }
         outStream.close();
     }
-*/
 }

@@ -3,8 +3,8 @@ public class GraphEdge {
     GraphNode from;
     GraphNode to;
     GraphEdge nextin;
-    GraphEdge nextout;
     GraphEdge previn;
+    GraphEdge nextout;
     GraphEdge prevout;
 
 
@@ -20,11 +20,10 @@ public class GraphEdge {
         }
         else
             this.nextout = null;
-
         from.lastoutedge = this;
         if (to.lastinedge!= null) {
             this.nextin = to.lastinedge;//it was from before
-            to.lastinedge.prevout = this;
+            to.lastinedge.previn = this;
         }
         else
             this.nextin = null;

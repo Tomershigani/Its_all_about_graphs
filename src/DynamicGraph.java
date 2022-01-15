@@ -16,8 +16,8 @@ public class DynamicGraph {
 
     public GraphEdge insertEdge(GraphNode from, GraphNode to) {
         GraphEdge edge = new GraphEdge(from, to);
-        from.setLastoutedge(edge);
-        to.setLastinedge(edge);
+        //from.setLastoutedge(edge);
+        //to.setLastinedge(edge);
         return edge;
 
 
@@ -30,7 +30,7 @@ public class DynamicGraph {
         if(edge.from.lastoutedge==edge)
             edge.from.lastoutedge=edge.prevout;
         if(edge.to.lastinedge==edge)
-            edge.to.lastinedge=edge.previn;
+            edge.to.lastinedge=edge.nextin;
 
 
         if ((edge.nextin != null) && (edge.previn != null)) //checking it's not the first or last edge
@@ -177,11 +177,13 @@ public void printnodekey(GraphNode node)
 
 
 
-    public RootedTree bfs(GraphNode source) {
+    public RootedTree bfs(GraphNode source) {// to check why last in edge is null
 
         bfs_initialization(source);
         //printnodekey(source);
        // GraphNode pointer = new GraphNode();
+       if (source.getKey()==2312)
+            System.out.print("mark");
         GraphNode pointer = firstPI;
         GraphEdge edge;
         GraphNode root = new GraphNode(source.getKey(),null);
