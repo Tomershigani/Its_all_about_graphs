@@ -33,13 +33,15 @@ public class GraphNode {
         this.bfs_parent=null;
         this.prev = null;
         this.key = key;
-        if (lastnode != null) {
-            this.next = lastnode;
-            lastnode.prev = this;
-            lastnode = this;
-        } else {
-            this.next = null;
-            lastnode = this;
+        if (key!=0) {
+            if (lastnode != null) {
+                this.next = lastnode;
+                lastnode.prev = this;
+                lastnode = this;
+            } else {
+                this.next = null;
+                lastnode = this;
+            }
         }
         this.lastinedge=null;
         this.lastoutedge=null;

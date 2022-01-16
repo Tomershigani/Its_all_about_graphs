@@ -9,7 +9,6 @@ public class DynamicGraph {
     static int time = 0;
 
     public DynamicGraph() {
-        GraphNode.lastnode = null;
         lastinPI = null;
     }
 
@@ -102,8 +101,12 @@ public class DynamicGraph {
 
     public void deleteNode(GraphNode node) {
         if ((node.lastoutedge == null) && (node.lastinedge == null)){
-            node.prev.next = node.next;
-            node.next.prev = node.prev;
+            if (node.prev!=null) {
+                node.prev.next = node.next;
+            }
+            if (node.next!=null) {
+                node.next.prev = node.prev;
+            }
             node.prev = null;
             node.next = null;
         }
@@ -263,7 +266,7 @@ public void printnodekey(GraphNode node)
         GraphNode ver = lastinPI;
         GraphNode new_root = new GraphNode(0);
         RootedTree tree = new RootedTree(new_root);
-        while ((ver!=null)&&(ver.color==2)){
+        while (ver!=null){
             if (ver.bfs_parent == null) {
                   //new GraphNode(ver.getKey(), new_root);
                 ver.setparent(new_root);
@@ -280,11 +283,15 @@ public void printnodekey(GraphNode node)
 
     public void dfs() {
         GraphNode vertex = GraphNode.lastnode;
-        bfs_initialization(vertex);
+       // bfs_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;
+            vertex.leftChild = null;//
+            vertex.parent = null;//
+            vertex.rightsibiling = null;//
             vertex = vertex.next;
+
         }
         time = 0;
         vertex = GraphNode.lastnode;
@@ -327,10 +334,13 @@ public void printnodekey(GraphNode node)
 
     public void dfs_rev(){
         GraphNode vertex = lastinPI;
-        dfs_rev_initialization(vertex);
+        //dfs_rev_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;
+            vertex.leftChild = null;//
+            vertex.parent = null;//
+            vertex.rightsibiling = null;//
             vertex = vertex.nextinPI;
         }
         time = 0;
