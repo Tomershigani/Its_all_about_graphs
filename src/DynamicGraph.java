@@ -14,6 +14,8 @@ public class DynamicGraph {
 
 
     public GraphEdge insertEdge(GraphNode from, GraphNode to) {
+        if(from.getKey()==39290&&to.getKey()==1628)
+            System.out.println("mark");
         GraphEdge edge = new GraphEdge(from, to);
         //from.setLastoutedge(edge);
         //to.setLastinedge(edge);
@@ -27,7 +29,7 @@ public class DynamicGraph {
        //edge.to = null;
         GraphEdge G;
         if(edge.from.lastoutedge==edge)
-            edge.from.lastoutedge=edge.prevout;
+            edge.from.lastoutedge=edge.nextout;
         if(edge.to.lastinedge==edge)
             edge.to.lastinedge=edge.nextin;
 
@@ -125,7 +127,6 @@ public class DynamicGraph {
 
 
     private void bfs_initialization(GraphNode source) {
-
         GraphNode next_node = source.next;
         GraphNode prev_node = source.prev;
         firstPI = source;
@@ -185,8 +186,7 @@ public void printnodekey(GraphNode node)
         bfs_initialization(source);
         //printnodekey(source);
        // GraphNode pointer = new GraphNode();
-       if (source.getKey()==2312)
-            System.out.print("mark");
+
         GraphNode pointer = firstPI;
         GraphEdge edge;
         GraphNode root = new GraphNode(source.getKey(),null);
@@ -194,7 +194,8 @@ public void printnodekey(GraphNode node)
         RootedTree bfs_tree = new RootedTree(source);
         while (pointer!=null)// need to think what to do instad of Q, and how to solve haritage problem
         {
-
+            if(pointer.getKey()==37038&&source.getKey()==2312)
+                System.out.println("mark");
             edge = pointer.lastoutedge;
             while (edge!=null){
                 if (edge.to.color==0)// if white
