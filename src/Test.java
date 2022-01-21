@@ -315,7 +315,7 @@ public class Test
                 case BFS:
                 {
 
-                    /*
+
                     randomIndex = random.nextInt(CG.getCurrentNodesIndex());
                    T = G.bfs(CG.getNodeByIndex(randomIndex));
                     outStream.writeBytes("Print in layers after BFS:" + System.lineSeparator());
@@ -325,7 +325,7 @@ public class Test
                     T.preorderPrint(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     break;
-                    */
+
 
                 }
                 case DEGREE:
@@ -355,7 +355,7 @@ public class Test
                     T.printByLayer(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     outStream.writeBytes("Preorder print after SCC:" + System.lineSeparator());
-                    //T.preorderPrint(outStream);
+                    T.preorderPrint(outStream);
                     outStream.writeBytes(System.lineSeparator());
                     break;
 
