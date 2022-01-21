@@ -96,8 +96,8 @@ public class RootedTree {
         while (new_root != null) {
             if (from == 1) {
                 if (count!=0)
-               System.out.println(",");
-               System.out.println(new_root.getKey());
+               System.out.print(",");
+               System.out.print(new_root.getKey());
                 count++;
                 if (new_root.leftChild != null)
                     new_root = new_root.leftChild;
