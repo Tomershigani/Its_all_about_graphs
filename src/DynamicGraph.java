@@ -14,19 +14,13 @@ public class DynamicGraph {
 
 
     public GraphEdge insertEdge(GraphNode from, GraphNode to) {
-        if(from.getKey()==39290&&to.getKey()==1628)
-            System.out.println("mark");
         GraphEdge edge = new GraphEdge(from, to);
-        //from.setLastoutedge(edge);
-        //to.setLastinedge(edge);
         return edge;
 
 
     }
 
     public void deleteEdge(GraphEdge edge) {
-       //edge.from = null;
-       //edge.to = null;
         GraphEdge G;
         if(edge.from.lastoutedge==edge)
             edge.from.lastoutedge=edge.nextout;
@@ -51,46 +45,19 @@ public class DynamicGraph {
         if (edge.nextin == null) { //if first in
             if(edge.previn!=null)
                 edge.previn.nextin = null;
-           /* else {
-                edge.from.lastoutedge = null;
-                edge.to.lastinedge = null;
-            }
-
-            */
         }
         if (edge.nextout == null) { // if first out
             if(edge.prevout!=null)
                 edge.prevout.nextout = null;
-            /*
-            else {
-                edge.from.lastoutedge = null;
-                edge.to.lastinedge=null;
-            }
-
-             */
         }
         if (edge.previn == null)  //if last in
             if(edge.nextin!=null)
             edge.nextin.previn = null;
-            /*
-            else
-            {
-                edge.from.lastoutedge = null;
-                edge.to.lastinedge=null;
-            }
 
-             */
 
         if (edge.prevout == null) { // if last out
             if(edge.nextout!=null)
             edge.nextout.prevout = null;
-            /*
-            else   {
-                edge.from.lastoutedge = null;
-                edge.to.lastinedge=null;
-            }
-
-             */
 
         }
     }
@@ -213,48 +180,6 @@ public void printnodekey(GraphNode node)
     }
 
 
-
-    private void dfs_rev_initialization(GraphNode source) {
-
-        GraphNode next_node = source.nextinPI;
-        GraphNode prev_node = source.previnPI;
-        lastinPI = source;
-        while (next_node != null) {
-            next_node.color = 0;
-            next_node.distance = -1;
-            next_node.bfs_parent = null;
-            next_node.parent =null;
-            next_node.leftChild = null;
-            next_node.rightsibiling=null;
-            next_node = next_node.nextinPI;
-        }
-        while (prev_node != null) {
-            prev_node.color = 0;
-            prev_node.distance = -1;
-            prev_node.bfs_parent = null;
-            prev_node.leftChild = null;
-            prev_node.rightsibiling=null;
-            prev_node.parent = null;
-            prev_node = prev_node.previnPI;
-
-        }
-        if (source != null) {
-            source.color = 1;
-            source.distance = 0;
-            source.bfs_parent = null;
-            source.leftChild = null;
-            source.rightsibiling=null;
-            source.parent=null;
-        }
-
-
-
-
-    }
-
-
-
-
     public RootedTree scc() {
         lastinPI = null;
         dfs();
@@ -277,13 +202,12 @@ public void printnodekey(GraphNode node)
 
     public void dfs() {
         GraphNode vertex = GraphNode.lastnode;
-      //  bfs_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;
-            vertex.leftChild = null;//
-            vertex.parent = null;//
-            vertex.rightsibiling = null;//
+            vertex.leftChild = null;
+            vertex.parent = null;
+            vertex.rightsibiling = null;
             vertex.visited = false;
             vertex = vertex.next;
 
@@ -329,7 +253,6 @@ public void printnodekey(GraphNode node)
 
     public void dfs_rev(){
         GraphNode vertex = lastinPI;
-      //  dfs_rev_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;

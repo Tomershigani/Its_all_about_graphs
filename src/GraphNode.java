@@ -47,24 +47,6 @@ public class GraphNode {
         this.lastinedge=null;
         this.lastoutedge=null;
     }
-    public GraphNode(int key , GraphNode pi) {
-        this(key);
-        if(pi!=null) { //// add if if pi == null noting
-            this.parent = pi;
-            if (parent.leftChild != null) {
-                GraphNode temp = parent.leftChild;
-                while (temp.rightsibiling != null) {
-                    temp = temp.rightsibiling;
-                }
-                temp.rightsibiling = this;
-            }
-            else {
-                parent.leftChild = this;
-            }
-        }
-    }
-
-
 
 
     public int getKey(){
@@ -114,42 +96,4 @@ public class GraphNode {
             }
         }
     }
-
     }
-
-
-
-/*
-
-class TreeNode extends GraphNode{
-    TreeNode parent;
-    TreeNode leftChild;
-    TreeNode rightsibiling;
-
-    public TreeNode() {
-        super();
-        TreeNode parent = null;
-        TreeNode leftChild = null;
-        TreeNode rightsibiling = null;
-    }
-
-    public TreeNode(int key , TreeNode pi) {
-        super(key);
-        if(pi!=null) { //// add if if pi == null noting
-            this.parent = pi;
-            if (parent.leftChild != null) {
-                TreeNode temp = parent.leftChild;
-                while (temp.rightsibiling != null) {
-                    temp = temp.rightsibiling;
-                }
-                temp.rightsibiling = this;
-            }
-            else {
-                parent.leftChild = this;
-            }
-        }
-    }
-
-}
-
-*/
