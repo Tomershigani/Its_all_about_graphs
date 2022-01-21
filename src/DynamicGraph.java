@@ -153,8 +153,6 @@ public void printnodekey(GraphNode node)
         bfs_initialization(source);
         GraphNode pointer = firstPI;
         GraphEdge edge;
-        //GraphNode root = new GraphNode(source.getKey(),null);
-        //GraphNode root = source; // check this
         RootedTree bfs_tree = new RootedTree(source);
         while (pointer!=null)// need to think what to do instad of Q, and how to solve haritage problem
         {
@@ -164,12 +162,10 @@ public void printnodekey(GraphNode node)
                 {
                     edge.to.color=1;
                     edge.to.distance = pointer.distance+1;
-                    //GraphNode tnode = new GraphNode(edge.to.key,pointer);
                     edge.to.setparent(pointer);
                     firstPI.nextinPI= edge.to;
                     firstPI = firstPI.nextinPI;
                 }
-               // firstPI = firstPI.nextinPI;
                 edge = edge.nextout;
             }
             pointer = pointer.nextinPI;
