@@ -6,7 +6,7 @@ import static java.lang.System.out;
 interface Constants
 {
     int SEED = 3659412;
-    int TEST_SIZE = 100; //10326
+    int TEST_SIZE = 10326; //10326
     int UNIQUE_KEYS_NUM = TEST_SIZE;
     int MAXIMUM_INSERT_NODES = UNIQUE_KEYS_NUM;
     int MAXIMUM_INSERT_EDGES = TEST_SIZE;

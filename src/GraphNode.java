@@ -18,6 +18,7 @@ public class GraphNode {
     GraphNode parent;
     GraphNode leftChild;
     GraphNode rightsibiling;
+    boolean visited = false;
 
 
     GraphNode (){
@@ -98,10 +99,11 @@ public class GraphNode {
     }
     public void setparent(GraphNode pi)
     {
-        if(pi!=null) { //// add if if pi == null noting
+        this.visited = true;
+        if(pi!=null) {//// add if if pi == null noting
             this.parent = pi;
-            if (parent.leftChild != null) {
-                GraphNode temp = parent.leftChild;
+            if (pi.leftChild != null) {
+                GraphNode temp = this.parent.leftChild;
                 while (temp.rightsibiling != null) {
                     temp = temp.rightsibiling;
                 }
