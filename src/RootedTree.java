@@ -45,10 +45,12 @@ public class RootedTree {
         int hight1 = hight(this.root);
         String [] print = new String[hight1];
         int count = 0;
+        int i = 0 ;
         printrec(this.root, count, print);
-        for (int i=0; i<print.length; i++){
+        for (i=0; i<print.length-1; i++){
            System.out.println(print[i].substring(0, print[i].length() - 1));
         }
+        System.out.print(print[i].substring(0, print[i].length() - 1));
 
 /**
         if (new_root.leftChild != null) {
