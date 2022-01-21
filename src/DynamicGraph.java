@@ -262,10 +262,12 @@ public void printnodekey(GraphNode node)
         GraphNode ver = lastinPI;
         GraphNode new_root = new GraphNode(0);
         RootedTree tree = new RootedTree(new_root);
-        while ((ver!=null)&&(ver.visited!=true)){
+        while (ver!=null){
             if (ver.bfs_parent == null) {
-                  //new GraphNode(ver.getKey(), new_root);
-               ver.setparent(new_root);
+                if (ver.visited != true) {
+                    //new GraphNode(ver.getKey(), new_root);
+                     ver.setparent(new_root);
+                }
             }
             ver.color = 0;
             ver= ver.nextinPI;
