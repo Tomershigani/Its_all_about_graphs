@@ -41,13 +41,13 @@ public class RootedTree {
         printrec(n.leftChild , count+1 , print);
         printrec(n.rightsibiling , count, print);
    }
-   public void printByLayer(DataOutputStream out) {
+   public void printByLayer(DataOutputStream out) throws IOException{
         int hight1 = hight(this.root);
         String [] print = new String[hight1];
         int count = 0;
         printrec(this.root, count, print);
         for (int i=0; i<print.length; i++){
-            System.out.println(print[i].substring(0, print[i].length() - 1));
+           out.writeUTF(print[i].substring(0, print[i].length() - 1));
         }
 
 /**
@@ -89,15 +89,15 @@ public class RootedTree {
         }
 **/
     }
-    public void preorderPrint(DataOutputStream out){
+    public void preorderPrint(DataOutputStream out) throws IOException{
         int from = 1;// 1 if comes from parent or sibiling,0 for child
         int count =0;
         GraphNode new_root = this.root;
         while (new_root != null) {
             if (from == 1) {
                 if (count!=0)
-                  System.out.print(",");
-                System.out.print(new_root.getKey());
+               out.writeBytes(",");
+               out.write(new_root.getKey());
                 count++;
                 if (new_root.leftChild != null)
                     new_root = new_root.leftChild;
