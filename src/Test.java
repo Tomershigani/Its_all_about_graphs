@@ -239,6 +239,7 @@ public class Test
         MyEdge myEdge;
         int randomIndex;
         int randomIndex1;
+        int tomercount=0;
 
         RootedTree T;
         Constants.Operations[] operationsArray = new Constants.Operations[Constants.TEST_SIZE];
@@ -320,6 +321,7 @@ public class Test
                    T = G.bfs(CG.getNodeByIndex(randomIndex));
                     outStream.writeBytes("Print in layers after BFS:" + System.lineSeparator());
                     T.printByLayer(outStream);
+                    tomercount++;
                     outStream.writeBytes(System.lineSeparator());
                     outStream.writeBytes("Preorder print after BFS:" + System.lineSeparator());
                     T.preorderPrint(outStream);
