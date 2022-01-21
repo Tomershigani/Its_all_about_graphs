@@ -189,7 +189,7 @@ public void printnodekey(GraphNode node)
 
         GraphNode pointer = firstPI;
         GraphEdge edge;
-        GraphNode root = new GraphNode(source.getKey(),null);
+     //   GraphNode root = new GraphNode(source.getKey(),null);
         //GraphNode root = source; // check this
         RootedTree bfs_tree = new RootedTree(source);
         while (pointer!=null)// need to think what to do instad of Q, and how to solve haritage problem
