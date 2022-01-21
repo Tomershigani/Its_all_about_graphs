@@ -184,18 +184,13 @@ public void printnodekey(GraphNode node)
     public RootedTree bfs(GraphNode source) {// to check why last in edge is null
 
         bfs_initialization(source);
-        //printnodekey(source);
-       // GraphNode pointer = new GraphNode();
-
         GraphNode pointer = firstPI;
         GraphEdge edge;
-     //   GraphNode root = new GraphNode(source.getKey(),null);
+        //GraphNode root = new GraphNode(source.getKey(),null);
         //GraphNode root = source; // check this
         RootedTree bfs_tree = new RootedTree(source);
         while (pointer!=null)// need to think what to do instad of Q, and how to solve haritage problem
         {
-            if(pointer.getKey()==37038&&source.getKey()==2312)
-                System.out.println("mark");
             edge = pointer.lastoutedge;
             while (edge!=null){
                 if (edge.to.color==0)// if white
