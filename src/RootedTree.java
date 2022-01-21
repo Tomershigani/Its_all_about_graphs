@@ -48,9 +48,10 @@ public class RootedTree {
         int i = 0 ;
         printrec(this.root, count, print);
         for (i=0; i<print.length-1; i++){
-           System.out.println(print[i].substring(0, print[i].length() - 1));
+           out.writeBytes(print[i].substring(0, print[i].length() - 1));
+           out.writeBytes(System.lineSeparator());
         }
-        System.out.print(print[i].substring(0, print[i].length() - 1));
+       out.writeBytes(print[i].substring(0, print[i].length() - 1));
 
 /**
         if (new_root.leftChild != null) {
@@ -98,8 +99,8 @@ public class RootedTree {
         while (new_root != null) {
             if (from == 1) {
                 if (count!=0)
-               System.out.print(",");
-               System.out.print(new_root.getKey());
+               out.writeBytes(",");
+               out.writeBytes(String.valueOf(new_root.getKey()));
                 count++;
                 if (new_root.leftChild != null)
                     new_root = new_root.leftChild;
