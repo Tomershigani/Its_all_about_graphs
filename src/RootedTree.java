@@ -48,50 +48,13 @@ public class RootedTree {
         int i = 0 ;
         printrec(this.root, count, print);
         for (i=0; i<print.length-1; i++){
-           out.writeBytes(print[i].substring(0, print[i].length() - 1));
-           out.writeBytes(System.lineSeparator());
+           System.out.println(print[i].substring(0, print[i].length() - 1));
+          // out.writeBytes(System.lineSeparator());
         }
-       out.writeBytes(print[i].substring(0, print[i].length() - 1));
-
-/**
-        if (new_root.leftChild != null) {
-            next_node = new_root.leftChild;
-        }
-        while (new_root != null) {
-            if (new_root.leftChild == next_node) {
-                System.out.println(new_root.getKey());
-            }
-            else {
-                System.out.print("," + new_root.getKey());
-            }
-            GraphNode temp = new_root.rightsibiling;
-            while (temp != null) {
-                System.out.print("," + temp.getKey());
-                if (next_node == null) {
-                    next_node = temp.leftChild;
-                }
-                temp = temp.rightsibiling;
-            }
-            if(new_root.parent!=null) {
-                if (new_root.parent.rightsibiling != null) {
-                    new_root = new_root.parent.rightsibiling.leftChild;
-                    continue;
-                }
-            }
-            new_root = next_node;
-            if(new_root!=null) {
-                if (new_root.leftChild != null) {
-                    next_node = new_root.leftChild;
-                }
-                else {
-                    next_node = null;
-                }
-            }
-
-
-        }
-**/
+      System.out.print(print[i].substring(0, print[i].length() - 1));
     }
+
+
     public void preorderPrint(DataOutputStream out) throws IOException{
         int from = 1;// 1 if comes from parent or sibiling,0 for child
         int count =0;
@@ -99,8 +62,8 @@ public class RootedTree {
         while (new_root != null) {
             if (from == 1) {
                 if (count!=0)
-               out.writeBytes(",");
-               out.writeBytes(String.valueOf(new_root.getKey()));
+               System.out.print(",");
+              System.out.print(String.valueOf(new_root.getKey()));
                 count++;
                 if (new_root.leftChild != null)
                     new_root = new_root.leftChild;
@@ -123,9 +86,4 @@ public class RootedTree {
             }
         }
     }
-
-
-
-
-
 }

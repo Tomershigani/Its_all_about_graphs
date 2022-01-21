@@ -265,7 +265,6 @@ public void printnodekey(GraphNode node)
         while (ver!=null){
             if (ver.bfs_parent == null) {
                 if (ver.visited != true) {
-                    //new GraphNode(ver.getKey(), new_root);
                      ver.setparent(new_root);
                 }
             }
@@ -278,7 +277,7 @@ public void printnodekey(GraphNode node)
 
     public void dfs() {
         GraphNode vertex = GraphNode.lastnode;
-        bfs_initialization(vertex);
+      //  bfs_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;
@@ -330,13 +329,13 @@ public void printnodekey(GraphNode node)
 
     public void dfs_rev(){
         GraphNode vertex = lastinPI;
-        dfs_rev_initialization(vertex);
+      //  dfs_rev_initialization(vertex);
         while (vertex!=null){
             vertex.color = 0;
             vertex.bfs_parent = null;
-            vertex.leftChild = null;//
-            vertex.parent = null;//
-            vertex.rightsibiling = null;//
+            vertex.leftChild = null;
+            vertex.parent = null;
+            vertex.rightsibiling = null;
             vertex = vertex.nextinPI;
         }
         time = 0;
@@ -361,13 +360,7 @@ public void printnodekey(GraphNode node)
             GraphNode Adj = edge2.from;
             if(Adj!=null) {
                 if (Adj.color == 0) {
-                   // if (u1!=null){
                     Adj.setparent(u1);
-                    //    System.out.println(u1.getKey()+ "father of" +Adj.getKey());
-                 //   }
-                  //  else{
-               // Adj.bfs_parent = u1;
-                 //   }
                 DFS_Visit_rev(Adj);
                 }
             }
